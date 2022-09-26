@@ -1,3 +1,4 @@
+
 async function login() {
     const email = document.getElementById("email");
     const password = document.getElementById("password");
@@ -11,8 +12,8 @@ async function login() {
             body: JSON.stringify({email: email.value, password: password.value}),
         });
         const message = await response.text();
-        if(response.status == 200) {
-            window.location.href = "../pages/employee.html"
+        if(response.status === 200) {
+            window.location.href = "pages/employee.html";
         } else {
             const msg = message.split(":")[1].replace("}", "");
             alert(msg);

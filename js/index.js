@@ -10,7 +10,9 @@ async function login() {
             },
             body: JSON.stringify({email: email.value, password: password.value}),
         });
-        const content = await response.json();
-        console.log(content);
+
+        if(response.status == 200) {
+            window.location.href = "../pages/employee.html"
+        }
     }
 }

@@ -4,28 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles/index.css" rel="stylesheet">
+    <script src="js/index.js"></script>
     <title>Login</title>
 </head>
 <body>
-    <header>
-        <table align="center" width="80%">
-            <tr>
-                <td>
-                    <p>LOGO</p>
-                </td>
-
-                <td align="rigth">
-                    <a href="">Home</a>
-                    <a href="">Cadastre-se</a>
-                </td>
-            </tr>
-        </table>
-        <hr>
-    </header>
-    <h3>Login</h3>
-    <form method="POST">
-        <input type="text" name="name" placeholder="Digite seu nome"/>
-        <input type="password" name="password" placeholder="Digite sua senha"/>
+    <form method="POST" id="login">
+        <h2>Login</h2>
+        <div class="container">
+            <label for="email"><b>Usuário</b></label>
+            <input id="email" type="email" placeholder="Digite o email" name="email" required>
+            
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Digite sua senha" name="password" required>
+            
+            <button type="submit" onclick={login}>Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+            
+        </div>
     </form>
 </body>
 </html>

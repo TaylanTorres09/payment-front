@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../styles/employee.css" rel="stylesheet">
+    <script src="../js/employee.js"></script>
+    <title>Funcionários</title>
+</head>
+<body>
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'employee')" id="defaultOpen">Funcionario</button>
+        <button class="tablinks" onclick="openTab(event, 'employee-outSourced')">Funcionario Terceirizados</button>
+        <button class="tablinks" onclick="openTab(event, 'table')">Tabela</button>
+    </div>
+  
+    <!-- Tab content -->
+    <div id="employee" class="tabcontent">
+        <form style="border:1px solid #ccc">
+            <div class="container">
+              <h1>Funcionario Cadastro</h1>
+              <hr>
+        
+              <label for="name"><b>Nome</b></label>
+              <input id="employee-name" type="text" placeholder="Digite seu nome" name="name" required>
+
+              <label for="hours"><b>Horas</b></label>
+              <input id="employee-hours" type="number" step="1" placeholder="Horas trabalhadas" name="hours" required>
+
+              <label for="hours"><b>Valor por Horas</b></label>
+              <input id="employee-value-hours" type="number" step=".1" placeholder="Quantos reais por hora" name="employee-value-hours" required>
+        
+              <div class="clearfix">
+                <button id="employee-button" type="button" onclick="postEmployee()" class="employeebtn">Cadastre-se</button>
+              </div>
+            </div>
+          </form>
+    </div>
+  
+    <div id="employee-outSourced" class="tabcontent">
+        <form style="border:1px solid #ccc">
+            <div class="container">
+              <h1>Funcionario Terceirizado Cadastro</h1>
+              <hr>
+        
+              <label for="name"><b>Nome</b></label>
+              <input id="employee-outSourced-name" type="text" placeholder="Digite seu nome" name="name" required>
+
+              <label for="hours"><b>Horas</b></label>
+              <input id="employee-outSourced-hours" type="number" step="1" placeholder="Horas trabalhadas" name="hours" required>
+
+              <label for="hours"><b>Valor por Horas</b></label>
+              <input id="employee-outSourced-value-hours" type="number" step=".2" placeholder="Quantos reais por hora" name="employee-value-hours" required>
+              
+              <label for="hours"><b>Valor por Horas</b></label>
+              <input id="employee-outSourced-additional-charge" type="number" step=".2" placeholder="Adicional em reais" name="employee-value-hours" required>
+
+              <div class="clearfix">
+                <button type="button" onclick="postEmployeeOutSourced()" class="employeebtn">Cadastre-se</button>
+              </div>
+            </div>
+        </form>
+    </div>
+  
+    <div id="table" class="tabcontent">
+        <h3>Tokyo</h3>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>
+</body>
+</html>

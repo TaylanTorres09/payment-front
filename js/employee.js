@@ -97,5 +97,15 @@ async function getEmployee(){
 
         const tdAdditionalCharge = tr.insertCell();
         tdAdditionalCharge.innerText = emp.additionalCharge || "";
+
+        const tdAcoes = tr.insertCell();
+        const imgEdit = document.createElement("img");
+        imgEdit.src = "../img/edit_icon.svg";
+        const imgDelete = document.createElement("img");
+        imgDelete.src = "../img/remove_icon.svg";
+        imgDelete.width = 20
+
+        tdAcoes.appendChild(imgEdit);
+        tdAcoes.appendChild(imgDelete);
     }
 }

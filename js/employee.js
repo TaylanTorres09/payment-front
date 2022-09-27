@@ -44,6 +44,9 @@ async function postEmployee(){
             alert(message.mensage);
         }
     }
+    name.value = "";
+    hours.value = "";
+    valuePerHours.value = "";
 }
 
 async function postEmployeeOutSourced(){
@@ -72,14 +75,17 @@ async function postEmployeeOutSourced(){
             alert(message.mensage);
         }
     }
+    name.value = "";
+    hours.value = "";
+    valuePerHours.value = "";
+    additionalCharge.value = "";
 }
 
 async function getEmployee(){
     const tbody = document.getElementById("tbody");
 
     const response = await fetch("http://localhost:8080/salary");
-    const data= await response.json();
-    console.log(data);
+    const data = await response.json();
     for(emp of data) {
         const tr = tbody.insertRow();
 
@@ -104,11 +110,22 @@ async function getEmployee(){
         const tdAcoes = tr.insertCell();
         const imgEdit = document.createElement("img");
         imgEdit.src = "../img/edit_icon.svg";
+
         const imgDelete = document.createElement("img");
         imgDelete.src = "../img/remove_icon.svg";
         imgDelete.width = 20
+        imgDelete.setAttribute("onclick", "deleted("+ emp.id +")")
 
         tdAcoes.appendChild(imgEdit);
         tdAcoes.appendChild(imgDelete);
     }
+}
+
+async function deleted(id) {
+    const remove = await fetch(`http://localhost:8080/remove/${id}`,{
+        method: "DELETE"
+    });
+    const { mensage } = await remove.json();
+
+    alert(mensage);
 }

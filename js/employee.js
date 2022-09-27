@@ -77,7 +77,7 @@ async function postEmployeeOutSourced(){
 async function getEmployee(){
     const tbody = document.getElementById("tbody");
 
-    const response = await fetch("http://localhost:8080/listAll");
+    const response = await fetch("http://localhost:8080/salary");
     const data= await response.json();
     console.log(data);
     for(emp of data) {
@@ -93,10 +93,13 @@ async function getEmployee(){
         tdHoras.innerText = emp.hours;
         
         const tdvaluePerHour = tr.insertCell();
-        tdvaluePerHour.innerText = emp.valuePerHour;
+        tdvaluePerHour.innerText = parseFloat(emp.valuePerHour).toFixed(2);
 
         const tdAdditionalCharge = tr.insertCell();
-        tdAdditionalCharge.innerText = emp.additionalCharge || "";
+        tdAdditionalCharge.innerText =emp.additionalCharge ? parseFloat(emp.additionalCharge).toFixed(2) : "";
+
+        const tdSalary = tr.insertCell();
+        tdSalary.innerText = parseFloat(emp.salary).toFixed(2);
 
         const tdAcoes = tr.insertCell();
         const imgEdit = document.createElement("img");

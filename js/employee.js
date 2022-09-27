@@ -47,6 +47,7 @@ async function postEmployee(){
     name.value = "";
     hours.value = "";
     valuePerHours.value = "";
+    getEmployee();
 }
 
 async function postEmployeeOutSourced(){
@@ -79,6 +80,7 @@ async function postEmployeeOutSourced(){
     hours.value = "";
     valuePerHours.value = "";
     additionalCharge.value = "";
+    getEmployee();
 }
 
 async function getEmployee(){
@@ -128,6 +130,14 @@ async function deleted(id) {
         method: "DELETE"
     });
     const { mensage } = await remove.json();
+
+    const response = await fetch("http://localhost:8080/salary");
+    const data = await response.json();
+
+    const elementPos = data.map(x => x.id).indexOf(id);
+
+    const tbody = document.getElementById("tbody");
+    tbody.deleteRow(elementPos);
 
     alert(mensage);
 }

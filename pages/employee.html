@@ -9,6 +9,7 @@
     <title>Funcionários</title>
 </head>
 <body>
+    <h1>Página de funcionários</h1>
     <!-- Tab links -->
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'employee')" id="defaultOpen">Funcionario</button>
@@ -65,8 +66,21 @@
     </div>
   
     <div id="table" class="tabcontent">
-        <h3>Tokyo</h3>
-        <p>Tokyo is the capital of Japan.</p>
+      <div class="container">
+        <table class="table-employee">
+          <thead>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Horas (h)</th>
+            <th>Valor por hora (R$)</th>
+            <th>Valor adicional (R$)</th>
+          </thead>
+          <tbody id="tbody">
+            <script>getEmployee();</script>
+          </tbody>
+        </table>
+
+      </div>
     </div>
 </body>
 </html>

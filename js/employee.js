@@ -73,3 +73,29 @@ async function postEmployeeOutSourced(){
         }
     }
 }
+
+async function getEmployee(){
+    const tbody = document.getElementById("tbody");
+
+    const response = await fetch("http://localhost:8080/listAll");
+    const data= await response.json();
+    console.log(data);
+    for(emp of data) {
+        const tr = tbody.insertRow();
+
+        const tdId = tr.insertCell();
+        tdId.innerText = emp.id;
+
+        const tdNome = tr.insertCell();
+        tdNome.innerText = emp.name;
+
+        const tdHoras = tr.insertCell();
+        tdHoras.innerText = emp.hours;
+        
+        const tdvaluePerHour = tr.insertCell();
+        tdvaluePerHour.innerText = emp.valuePerHour;
+
+        const tdAdditionalCharge = tr.insertCell();
+        tdAdditionalCharge.innerText = emp.additionalCharge || "";
+    }
+}

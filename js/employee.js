@@ -1,4 +1,4 @@
-function openTab(evt, name) {
+async function openTab(evt, name) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -17,6 +17,11 @@ function openTab(evt, name) {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(name).style.display = "block";
     evt.currentTarget.className += " active";
+
+    if(name === "table") {
+        const data = await getSalary();
+        await getEmployee(data);
+    }
 }
 
 async function postEmployee(){
@@ -47,7 +52,8 @@ async function postEmployee(){
     name.value = "";
     hours.value = "";
     valuePerHours.value = "";
-    getEmployee();
+    const data = await getSalary();
+    await getEmployee(data);
 }
 
 async function postEmployeeOutSourced(){
@@ -80,48 +86,56 @@ async function postEmployeeOutSourced(){
     hours.value = "";
     valuePerHours.value = "";
     additionalCharge.value = "";
-    getEmployee();
+    const data = await getSalary();
+    await getEmployee(data);
 }
 
-async function getEmployee(){
-    const tbody = document.getElementById("tbody");
-
+async function getSalary() {
     const response = await fetch("http://localhost:8080/salary");
     const data = await response.json();
-    for(emp of data) {
-        const tr = tbody.insertRow();
+    return data;
+}
 
-        const tdId = tr.insertCell();
-        tdId.innerText = emp.id;
+async function getEmployee(data) {
+    const tbody = document.getElementById("tbody");
+    tbody.innerHTML = "";
 
-        const tdNome = tr.insertCell();
-        tdNome.innerText = emp.name;
-
-        const tdHoras = tr.insertCell();
-        tdHoras.innerText = emp.hours;
-        
-        const tdvaluePerHour = tr.insertCell();
-        tdvaluePerHour.innerText = parseFloat(emp.valuePerHour).toFixed(2);
-
-        const tdAdditionalCharge = tr.insertCell();
-        tdAdditionalCharge.innerText =emp.additionalCharge ? parseFloat(emp.additionalCharge).toFixed(2) : "";
-
-        const tdSalary = tr.insertCell();
-        tdSalary.innerText = parseFloat(emp.salary).toFixed(2);
-
-        const tdAcoes = tr.insertCell();
-        const imgEdit = document.createElement("img");
-        imgEdit.src = "../img/edit_icon.svg";
-        imgEdit.style.cursor = "pointer";
-
-        const imgDelete = document.createElement("img");
-        imgDelete.src = "../img/remove_icon.svg";
-        imgDelete.width = 20
-        imgDelete.style.cursor = "pointer";
-        imgDelete.setAttribute("onclick", "deleted("+ emp.id +")")
-
-        tdAcoes.appendChild(imgEdit);
-        tdAcoes.appendChild(imgDelete);
+    if(data) {
+        for(emp of data) {
+            const tr = tbody.insertRow();
+    
+            const tdId = tr.insertCell();
+            tdId.innerText = emp.id;
+    
+            const tdNome = tr.insertCell();
+            tdNome.innerText = emp.name;
+    
+            const tdHoras = tr.insertCell();
+            tdHoras.innerText = emp.hours;
+            
+            const tdvaluePerHour = tr.insertCell();
+            tdvaluePerHour.innerText = parseFloat(emp.valuePerHour).toFixed(2);
+    
+            const tdAdditionalCharge = tr.insertCell();
+            tdAdditionalCharge.innerText =emp.additionalCharge ? parseFloat(emp.additionalCharge).toFixed(2) : "";
+    
+            const tdSalary = tr.insertCell();
+            tdSalary.innerText = parseFloat(emp.salary).toFixed(2);
+    
+            const tdAcoes = tr.insertCell();
+            const imgEdit = document.createElement("img");
+            imgEdit.src = "../img/edit_icon.svg";
+            imgEdit.style.cursor = "pointer";
+    
+            const imgDelete = document.createElement("img");
+            imgDelete.src = "../img/remove_icon.svg";
+            imgDelete.width = 20
+            imgDelete.style.cursor = "pointer";
+            imgDelete.setAttribute("onclick", "deleted("+ emp.id +")")
+    
+            tdAcoes.appendChild(imgEdit);
+            tdAcoes.appendChild(imgDelete);
+        }
     }
 }
 

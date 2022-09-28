@@ -12,9 +12,9 @@
     <h1>Página de funcionários</h1>
     <!-- Tab links -->
     <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'employee')" id="defaultOpen">Funcionario</button>
-        <button class="tablinks" onclick="openTab(event, 'employee-outSourced')">Funcionario Terceirizados</button>
-        <button class="tablinks" onclick="openTab(event, 'table')">Tabela</button>
+        <button class="tablinks" onclick="openTab('employee')" id="defaultOpen">Funcionario</button>
+        <button class="tablinks" onclick="openTab('employee-outSourced')">Funcionario Terceirizados</button>
+        <button class="tablinks" onclick="openTab('table')">Tabela</button>
     </div>
   
     <!-- Tab content -->
@@ -34,7 +34,7 @@
               <input id="employee-value-hours" type="number" step=".1" placeholder="Quantos reais por hora" name="employee-value-hours" required>
         
               <div class="clearfix">
-                <button id="employee-button" type="button" onclick="postEmployee()" class="employeebtn">Cadastre-se</button>
+                <button id="employee-button" type="button" onclick="postOrUpdateEmployee()" class="employeebtn">Cadastre-se</button>
               </div>
             </div>
           </form>
@@ -59,7 +59,7 @@
               <input id="employee-outSourced-additional-charge" type="number" step=".2" placeholder="Adicional em reais" name="employee-value-hours" required>
 
               <div class="clearfix">
-                <button type="button" onclick="postEmployeeOutSourced()" class="employeebtn">Cadastre-se</button>
+                <button id="employee-OutSourcedButon" type="button" onclick="postOrUpdateEmployeeOutSourced()" class="employeebtn">Cadastre-se</button>
               </div>
             </div>
         </form>

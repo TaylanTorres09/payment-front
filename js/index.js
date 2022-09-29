@@ -1,9 +1,10 @@
+const url = "http://localhost:8080";
 
 async function login() {
     const email = document.getElementById("email");
     const password = document.getElementById("password");
     if(email.value && password.value) {
-        const response = await fetch("http://localhost:8080/user/login", {
+        const response = await fetch(`${url}/user/login`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",

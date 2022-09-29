@@ -1,5 +1,7 @@
 let setStateId, setStateUpdate = false;
 
+const url = "http://localhost:8080";
+
 async function openTab(name) {
     // Declare all variables
     var i, tabcontent;
@@ -23,7 +25,7 @@ async function postEmployee(){
     const hours = document.getElementById("employee-hours");
     const valuePerHours = document.getElementById("employee-value-hours");
     if(name.value && hours.value && valuePerHours.value) {
-        const response = await fetch("http://localhost:8080/register", {
+        const response = await fetch(`${url}/register`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -36,23 +38,24 @@ async function postEmployee(){
             }),
         });
         const message = await response.json();
-        console.log(message);
         if(response.status === 201) {
-            alert("Cadastro feito com successo")
+            alert("Cadastro feito com successo");
         } else {
             alert(message.mensage);
         }
+    } else {
+        alert("Preencha todos os valores");
     }
     await cleanForm(name, hours, valuePerHours);
 }
 
 async function updateEmployee(id){
-    const name = document.getElementById("employee-outSourced-name");
-    const hours = document.getElementById("employee-outSourced-hours");
-    const valuePerHours = document.getElementById("employee-outSourced-value-hours");
+    const name = document.getElementById("employee-name");
+    const hours = document.getElementById("employee-hours");
+    const valuePerHours = document.getElementById("employee-value-hours");
 
     if(id && name.value && hours.value && valuePerHours.value) {
-        const response = await fetch("http://localhost:8080/update", {
+        const response = await fetch(`${url}/update`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -67,12 +70,14 @@ async function updateEmployee(id){
         });
         const message = await response.json();
         if(response.status === 200) {
-            alert("Atualização feita com successo")
+            alert("Atualização feita com successo");
         } else {
             alert(message.mensage);
         }
+    } else {
+        alert("Preencha todos os valores");
     }
-    await cleanForm(name, hours, valuePerHours, additionalCharge);
+    await cleanForm(name, hours, valuePerHours);
     setStateUpdate = false;
     document.getElementById("employee-button").innerHTML = "Cadastre-se";
 }
@@ -91,7 +96,7 @@ async function postEmployeeOutSourced(){
     const valuePerHours = document.getElementById("employee-outSourced-value-hours");
     const additionalCharge = document.getElementById("employee-outSourced-additional-charge");
     if(name.value && hours.value && valuePerHours.value && additionalCharge.value) {
-        const response = await fetch("http://localhost:8080/register/outSourced", {
+        const response = await fetch(`${url}/register/outSourced`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -106,10 +111,12 @@ async function postEmployeeOutSourced(){
         });
         const message = await response.json();
         if(response.status === 201) {
-            alert("Cadastro feito com successo")
+            alert("Cadastro feito com successo");
         } else {
             alert(message.mensage);
         }
+    } else {
+        alert("Preencha todos os valores");
     }
     await cleanForm(name, hours, valuePerHours, additionalCharge);
 }
@@ -121,7 +128,7 @@ async function updateEmployeeOutSourced(id){
     const additionalCharge = document.getElementById("employee-outSourced-additional-charge");
 
     if(id && name.value && hours.value && valuePerHours.value && additionalCharge.value) {
-        const response = await fetch("http://localhost:8080/update/outSourced", {
+        const response = await fetch(`${url}/update/outSourced`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -137,10 +144,12 @@ async function updateEmployeeOutSourced(id){
         });
         const message = await response.json();
         if(response.status === 200) {
-            alert("Atualização feita com successo")
+            alert("Atualização feita com successo");
         } else {
             alert(message.mensage);
         }
+    } else {
+        alert("Preencha todos os valores");
     }
     await cleanForm(name, hours, valuePerHours, additionalCharge);
     setStateUpdate = false;
@@ -166,7 +175,7 @@ async function cleanForm(name, hours, valuePerHours, additionalCharge) {
 }
 
 async function getSalary() {
-    const response = await fetch("http://localhost:8080/salary");
+    const response = await fetch(`${url}/salary`);
     const data = await response.json();
     return data;
 }
@@ -217,12 +226,12 @@ async function getEmployee(data) {
 
 async function deleted(id) {
     if(confirm("Deseja deletar os dados do funcionário de id: " + id)) {
-        const remove = await fetch(`http://localhost:8080/remove/${id}`,{
+        const remove = await fetch(`${url}/remove/${id}`,{
             method: "DELETE"
         });
         const { mensage } = await remove.json();
     
-        const response = await fetch("http://localhost:8080/salary");
+        const response = await fetch(`${url}/salary`);
         const data = await response.json();
     
         const elementPos = data.map(x => x.id).indexOf(id);

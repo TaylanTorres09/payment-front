@@ -10,7 +10,7 @@ async function login() {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
-            mode: "no-cors",
+            mode: "cors",
             body: JSON.stringify({email: email.value, password: password.value}),
         });
         const message = await response.text();

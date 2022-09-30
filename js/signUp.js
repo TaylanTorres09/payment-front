@@ -13,13 +13,14 @@ async function signUp() {
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
-                mode: "no-cors",
+                mode: "cors",
                 body: JSON.stringify({
                     name: name.value,
                     email: email.value,
                     password: password.value,
                 }),
             });
+            console.log(response)
             const message = await response.json();
             if(response.status === 201) {
                 window.location.href = "../pages/employee.html";

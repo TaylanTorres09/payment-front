@@ -210,12 +210,14 @@ async function getEmployee(data) {
             const imgEdit = document.createElement("img");
             imgEdit.src = "../img/edit_icon.svg";
             imgEdit.style.cursor = "pointer";
+            imgEdit.title = "Atualizar Funcionário";
             imgEdit.setAttribute("onclick", "setValuesEmployeesChangeTab("+ JSON.stringify(emp) +")");
-    
+            
             const imgDelete = document.createElement("img");
             imgDelete.src = "../img/remove_icon.svg";
             imgDelete.width = 20
             imgDelete.style.cursor = "pointer";
+            imgDelete.title = "Deletar Funcionário";
             imgDelete.setAttribute("onclick", "deleted("+ emp.id +")");
     
             tdAcoes.appendChild(imgEdit);

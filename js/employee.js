@@ -31,6 +31,7 @@ async function postEmployee(){
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
+            mode: "no-cors",
             body: JSON.stringify({
                 name: name.value,
                 hours: parseInt(hours.value, 10),
@@ -61,6 +62,7 @@ async function updateEmployee(id){
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
+            mode: "no-cors",
             body: JSON.stringify({
                 id: parseInt(id, 10),
                 name: name.value,
@@ -102,6 +104,7 @@ async function postEmployeeOutSourced(){
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
+            mode: "no-cors",
             body: JSON.stringify({
                 name: name.value,
                 hours: parseInt(hours.value, 10),
@@ -134,6 +137,7 @@ async function updateEmployeeOutSourced(id){
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
+            mode: "no-cors",
             body: JSON.stringify({
                 id: parseInt(id, 10),
                 name: name.value,
@@ -175,7 +179,7 @@ async function cleanForm(name, hours, valuePerHours, additionalCharge) {
 }
 
 async function getSalary() {
-    const response = await fetch(`${url}/salary`);
+    const response = await fetch(`${url}/salary`, {mode: "no-cors"});
     const data = await response.json();
     return data;
 }
@@ -229,11 +233,12 @@ async function getEmployee(data) {
 async function deleted(id) {
     if(confirm("Deseja deletar os dados do funcionário de id: " + id)) {
         const remove = await fetch(`${url}/remove/${id}`,{
-            method: "DELETE"
+            method: "DELETE",
+            mode: "no-cors",
         });
         const { mensage } = await remove.json();
     
-        const response = await fetch(`${url}/salary`);
+        const response = await fetch(`${url}/salary`, {mode: "no-cors"});
         const data = await response.json();
     
         const elementPos = data.map(x => x.id).indexOf(id);

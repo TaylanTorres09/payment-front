@@ -13,6 +13,7 @@ async function signUp() {
                     "Accept": "application/json",
                     "Content-Type": "application/json"
                 },
+                mode: "no-cors",
                 body: JSON.stringify({
                     name: name.value,
                     email: email.value,

@@ -1,6 +1,6 @@
 let setStateId, setStateUpdate = false;
 
-const url = "http://localhost:8080";
+const url = "https://api-paymen.herokuapp.com";
 
 async function openTab(name) {
     // Declare all variables

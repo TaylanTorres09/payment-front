@@ -1,4 +1,4 @@
-const url = "http://localhost:8080";
+const url = "https://api-paymen.herokuapp.com";
 
 async function signUp() {
     const name = document.getElementById("signUp-name");
